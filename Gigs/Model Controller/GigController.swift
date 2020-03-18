@@ -53,6 +53,7 @@ class GigController {
             }
             completion(nil)
         }.resume()
+    }
         
         func login(with user: User, completion: @escaping (Error?) -> Void) {
             let loginURL = baseURL.appendingPathComponent("/users/login")
@@ -60,7 +61,7 @@ class GigController {
             request.httpMethod = HTTPMethod.post.rawValue
             request.setValue("application/json", forHTTPHeaderField: "Content-Type")
             
-            let jsonEncooder = JSONEncoder()
+            let jsonEncoder = JSONEncoder()
             do {
                 let jsonData = try jsonEncoder.encode(user)
                 request.httpBody = jsonData
@@ -98,4 +99,3 @@ class GigController {
             }.resume()
         }
     }
-}
